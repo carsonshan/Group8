@@ -22,6 +22,7 @@ import './style/App.css';
  * Import your components
  */
 import Date from './components/Date.js';
+import StockTicker from "./components/StockTicker";
 
 class App extends React.Component{
     constructor(props) {
@@ -31,6 +32,9 @@ class App extends React.Component{
              * TODO
              * Add state objects for the user inputs and anything else you may need to render the highchart.
              */
+            startDate: null,
+            endDate: null,
+            stockTicker: null
         };
 
     }
@@ -53,6 +57,7 @@ class App extends React.Component{
                      * highchart should be displayed by changing the state of that boolean.
                      * Don't forget to bind these methods!
                      */}
+                     <StockTicker/>
                     <div className="date-range">
                         <Date />
                     </div>

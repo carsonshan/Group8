@@ -120,10 +120,7 @@ class StockTicker extends React.Component {
                      */
 
                 }
-                {showCompanyInfo ?
-                    <div><p>Coming Soon</p></div> :
-                    <div></div>
-                }
+
             </div>
         );
     }
