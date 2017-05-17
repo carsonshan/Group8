@@ -27,6 +27,7 @@ class Charts extends React.Component {
              * It can be initialized to be empty.
              */
         };
+        this.dataSourceHelper = this.dataSourceHelper.bind(this);
     }
 
 
@@ -85,3 +86,4 @@ class Charts extends React.Component {
 }
 
 // Don't forget to export your component!
+export default Charts;

@@ -103,11 +103,13 @@ class StockTicker extends React.Component {
              * to handle errors). If you successfully retrieve this information, you can set the state objects
              * and render it.
              */
+            var symbol = null;
             this.setState({showinfo: true});
 
             //this.props.onChange(..);  Call this.props.onChange with the selected symbol to propagate it
             // to the App component, which will handle it via its own onChane prop,
             // ultimately  used to fetch the data for the LineChart component.
+            this.props.onChange(symbol);
 
         }
         else {
@@ -161,3 +163,4 @@ class StockTicker extends React.Component {
 }
 
 //Don't forget to export your component!
+export default StockTicker;
