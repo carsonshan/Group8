@@ -54,6 +54,9 @@ class App extends React.Component{
                      */}
 
                     <div className="date-range">
+                        <label>Start Date</label>
+                        <Date />
+                        <label>End Date</label>
                         <Date />
                     </div>
                 </div>
