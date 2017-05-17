@@ -74,6 +74,7 @@ class Charts extends React.Component {
          * TODO
          * Render your LineChart component and pass the data for the chart to display via props
          */
+        <LineChart data=""/>
     }
 }
 

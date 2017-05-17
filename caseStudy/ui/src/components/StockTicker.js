@@ -1,51 +1,3 @@
-/**
- * Copyright 2017 Goldman Sachs.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
-
-
-
-/* Display a stock ticker that provides typeahead (aka autocomplete) capability.
- * This requires making an AJAX HTTP request (asynchronous JavaScript and XML request) to
- * your service and prefetching the list of all available stock tickers or making an async
- * query every time the input changes (AsyncTypeahead). If you don't have a route defined
- * in your services/API that returns all stock tickers as a JSON object, create one!
- *
- * You can use promises(axios),
- * fetch, jQuery...there are many libraries to help you do this. The data you will
- * receive will be in a JSON format.
- * https://hashnode.com/post/5-best-libraries-for-making-ajax-calls-in-react-cis8x5f7k0jl7th53z68s41k1
- * fetch: https://davidwalsh.name/fetch
- * axios: https://github.com/mzabriskie/axios (you will need to install this package)
- * jquery: http://api.jquery.com/jquery.getjson/ (you will need to install the jquery package)
- *
- * Feel free to choose among of the many open source options for your typeahead select box.
- * We recommend react-select or react-bootstrap-typeahead. react-boostrap-typeahead is included
- * in your package.json.
- *
- * react-select:
- * https://www.npmjs.com/package/react-select
- * http://jedwatson.github.io/react-select/
- * https://github.com/JedWatson/react-select
- *
- * react-boostrap-typeahead
- * https://www.npmjs.com/package/react-bootstrap-typeahead
- * http://ericgio.github.io/react-bootstrap-typeahead/
- * https://github.com/ericgio/react-bootstrap-typeahead/blob/master/example/examples/BasicBehaviorsExample.react.js (note this is not ES2015)
- */
-
 import React from 'react';
 import {Typeahead} from 'react-bootstrap-typeahead';
 
@@ -82,7 +34,8 @@ class StockTicker extends React.Component {
                 state: '',
                 sector: '',
                 industry: ''
-            }
+            },
+            options: []
             /**
              * TODO
              * Add any additional state to pass via props to the typeahead component.
@@ -103,7 +56,9 @@ class StockTicker extends React.Component {
              * to handle errors). If you successfully retrieve this information, you can set the state objects
              * and render it.
              */
-            var symbol = event[0];
+
+            this.setState()
+            var symbol = event[0].symbol;
             console.log(symbol);
 
             fetch('http://localhost:8000/services/company/' + symbol, {
@@ -113,14 +68,9 @@ class StockTicker extends React.Component {
                 console.log(companyValues);
                 this.setState({showcompanyinfo: true, company: companyValues});
             }).catch(function(err) {
-
+                console.log("error");
             });
-
-            //this.props.onChange(..);  Call this.props.onChange with the selected symbol to propagate it
-            // to the App component, which will handle it via its own onChane prop,
-            // ultimately  used to fetch the data for the LineChart component.
             this.props.onChange(symbol);
-
         }
         else {
             this.setState({showinfo: false});
@@ -144,9 +94,14 @@ class StockTicker extends React.Component {
                 <div className="ticker-input">
                     <p><strong>Stock Ticker</strong></p>
                     <div className="stockticker-typeahead">
-                        <Typeahead
-                             onChange={this.handleChange}
-                             placeholder="Company Name/Ticker" />
+                        {
+                            <Typeahead
+                                labelKey={this.state.company.symbol}
+                                onChange={this.handleChange}
+                                placeholder="Company Name/Ticker"
+                                options={this.state.options}
+                            />
+                        }
                     </div>
                 </div>
                 {
@@ -160,9 +115,7 @@ class StockTicker extends React.Component {
 
                 }
                 {showCompanyInfo ?
-                    <div>
-                        <p>Coming Soon</p>
-                    </div> :
+                    <div><p>Coming Soon</p></div> :
                     <div></div>
                 }
             </div>
