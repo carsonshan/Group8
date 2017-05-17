@@ -16,14 +16,33 @@
 
 package resources;
 
+import org.junit.Test;
+import pojo.*;
+import javax.ws.rs.core.Application;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.glassfish.jersey.server.ResourceConfig;
+
+import java.util.*;
+import static org.junit.Assert.assertEquals;
+
 /**
  * Write your tests for the Stock Resource here
  */
+
 public class StockResourceTest {
 
-    // TODO - write a test for each method in the CompanyResource class
-    // Think about both positive and negative test cases:
-    // What happens if no inputs are passed?
-    // What happens if the input is null?
+    private static ObjectMapper mapper = new ObjectMapper();
+
+    @Override
+    protected Application configure() {
+        return new ResourceConfig(Stock.class);
+    }
+
+    @Test
+    public void testStock1() {
+        // checks that number of events between 03/15/2017 and 03/20/2017 is 4
+        List<Double> stocksInRange = target().path("/services/stock/startDate/03152017/endDate/03202017/stockTicker/ATVI").request().get(List.class);
+        assertEquals(4, stocksInRange.size());
+    }
 
 }
