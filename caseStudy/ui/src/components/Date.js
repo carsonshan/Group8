@@ -55,7 +55,7 @@ class Date extends React.Component {
          * to propagate the change to App component, which will handle it via its
          * own onChange prop.
          */
-        this.setState({date: dateSelected, startDate: dateSelected});
+        this.setState({startDate: dateSelected});
         this.props.onChange(dateSelected);
 
     }
@@ -67,7 +67,7 @@ class Date extends React.Component {
          * to propagate the change to App component, which will handle it via its
          * own onChange prop.
          */
-        this.setState({date: dateSelected, endDate: dateSelected});
+        this.setState({endDate: dateSelected});
         this.props.onChange(dateSelected);
 
     }

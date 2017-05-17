@@ -42,6 +42,7 @@ class App extends React.Component{
     render () {
         return (
             <div className="page-display">
+                <h1>Coming Soon</h1>
                 <div className="input">
                     {/**
                      * TODO
@@ -52,7 +53,6 @@ class App extends React.Component{
                      * highchart should be displayed by changing the state of that boolean.
                      * Don't forget to bind these methods!
                      */}
-
                     <div className="date-range">
                         <Date />
                     </div>

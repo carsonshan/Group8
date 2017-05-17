@@ -106,7 +106,7 @@ class StockTicker extends React.Component {
             var symbol = event[0];
             console.log(symbol);
 
-            fetch('http://localhost:8000/services/company/' + symbol){
+            fetch('http://localhost:8000/services/company/' + symbol, {
                 method: 'get'
             }).then(function(response) {
                 const companyValues = response.json();
@@ -144,17 +144,9 @@ class StockTicker extends React.Component {
                 <div className="ticker-input">
                     <p><strong>Stock Ticker</strong></p>
                     <div className="stockticker-typeahead">
-                        {/* useful props if you decide to use react-bootstrap-typeahead
                         <Typeahead
-                             align=
-                             filterBy=
-                             labelKey=
                              onChange={this.handleChange}
-                             minLength=
-                             placeholder="Company Name/Ticker"
-                             options=
-                        />
-                        */}
+                             placeholder="Company Name/Ticker" />
                     </div>
                 </div>
                 {
@@ -165,6 +157,13 @@ class StockTicker extends React.Component {
                      *  be maintained as a state object.
                      *  http://reactpatterns.com/#conditional-rendering
                      */
+
+                }
+                {showCompanyInfo ?
+                    <div>
+                        <p>Coming Soon</p>
+                    </div> :
+                    <div></div>
                 }
             </div>
         );
