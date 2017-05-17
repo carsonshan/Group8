@@ -36,23 +36,38 @@ class Date extends React.Component {
     constructor (props) {
         super(props)
         this.state = {
-            date: moment()
+            date: moment(),
+            startDate: moment(),
+            endDate: moment()
         };
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChangeStart = this.handleChangeStart.bind(this);
+        this.handleChangeEnd = this.handleChangeEnd.bind(this);
     }
 
     componentDidMount() {
         this.props.onChange(this.state.date);
     }
 
-    handleChange(dateSelected) {
+    handleChangeStart(dateSelected) {
         /**
          * TODO
          * Set the state. Call this.props.onChange with the date argument
          * to propagate the change to App component, which will handle it via its
          * own onChange prop.
          */
-        this.setState({date: dateSelected});
+        this.setState({date: dateSelected, startDate: dateSelected});
+        this.props.onChange(dateSelected);
+
+    }
+
+    handleChangeEnd(dateSelected) {
+        /**
+         * TODO
+         * Set the state. Call this.props.onChange with the date argument
+         * to propagate the change to App component, which will handle it via its
+         * own onChange prop.
+         */
+        this.setState({date: dateSelected, endDate: dateSelected});
         this.props.onChange(dateSelected);
 
     }
@@ -71,7 +86,16 @@ class Date extends React.Component {
                 }
                 <p><strong>{this.props.text}</strong></p>
                 <div className="date-input">
-                    <DatePicker selected={this.state.date} onChange={this.handleChange} />
+                    <label>Start Date</label>
+                    <DatePicker selected={this.state.startDate}
+                                startDate={this.state.startDate}
+                                endDate={this.state.endDate}
+                                onChange={this.handleChangeStart} />
+                    <label>End Date</label>
+                    <DatePicker selected={this.state.endDate}
+                                startDate={this.state.startDate}
+                                endDate={this.state.endDate}
+                                onChange={this.handleChangeEnd}/>
                 </div>
             </div>
         );
