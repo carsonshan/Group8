@@ -15,6 +15,8 @@
  */
 
 package pojo;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * This class will define a company and its attributes
@@ -25,6 +27,61 @@ public class Company {
     // TODO - Think back to your modelling session
     // Define the attributes of a Company based on the
     // provided data in resources/data
+    @JsonProperty
+    private String symbol;
+    @JsonProperty
+    private String name;
+    @JsonProperty
+    private String headquartersCity;
+    @JsonProperty
+    private String headquatersStateOrCountry;
+    @JsonProperty
+    private String numberOfEmployees;
+    @JsonProperty
+    private String sector;
+    @JsonProperty
+    private String industry;
+
 
     // TODO - add getter and setter methods for your attributes
+
+    public String getSymbol(){
+        return symbol;
+    }
+    public void setSymbol(String symbol){
+        this.symbol= symbol;
+    }
+
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name= name;
+    }
+
+    public String getHeadQuartersCity(){
+        return headquartersCity;
+    }
+    public void setHeadquartersCity(String headquartersCity){
+        this.headquartersCity=headquartersCity;
+    }
+
+    public String getHeadquartersStateOrCoutry(){
+        return headquatersStateOrCountry;
+    }
+    public void setHeadquatersStateOrCountry(String headquatersStateOrCountry){
+        this.headquatersStateOrCountry = headquatersStateOrCountry;
+    }
+
+    public String getNumberOfEmployees(){
+        return numberOfEmployees;
+    }
+    public void setNumberOfEmployees()
+    public String getSector(){
+        return sector;
+    }
+    public  String getIndustry(){
+        return industry;
+    }
+
 }
