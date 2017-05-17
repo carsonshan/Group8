@@ -92,7 +92,7 @@ public class Company {
     public  String getIndustry(){
         return industry;
     }
-    public void setIndustry(){
+    public void setIndustry(String industry){
         this.industry = industry;
     }
 

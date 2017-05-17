@@ -34,14 +34,6 @@ import java.util.List;
  */
 public class InputValidator {
 
-    public static final SimpleDateFormat DateFormat = new SimpleDateFormat();
-    private static final ObjectMapper mapper = new ObjectMapper();
-
-    public static Company readSingleCompany (String filename) throws IOException{
-        InputStream inputStream = new FileInputStream(("data" + File.separatorChar + filename));
-        return mapper.readvalue(inputStream, new TypeReference<Company>(){});
-    }
-
 
 
 }
