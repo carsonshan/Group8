@@ -17,16 +17,17 @@ import java.util.List;
 public class FileHelper {
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    public static Stock readStockToFile(String fileName) throws IOException {
+    public static Company readSingleStock(String fileName) throws IOException {
 
         InputStream inputStream = new FileInputStream(("data" + File.separatorChar + fileName));
-        return mapper.readValue(inputStream, new TypeReference<List<Stock>>() {});
+        return mapper.readValue(inputStream, new TypeReference<Stock>() {});
     }
 
-    public static Company readCompanyToFile(String fileName) throws IOException {
+    public static Stock readAllStocks(String fileName) throws IOException {
 
         InputStream inputStream = new FileInputStream(("data" + File.separatorChar + fileName));
-        return mapper.readValue(inputStream, new TypeReference<Company>() {});
+        return mapper.readValue(inputStream, new TypeReference<List<Stock>>() {
+        });
     }
 
     public static Company readSingleCompany(String fileName) throws IOException {
@@ -44,22 +45,3 @@ public class FileHelper {
         });
     }
 
-
-
-
-
-
-
-
-/*    public static void writeTeamsToFile(String fileName, List<Team> teams) throws IOException {
-
-        mapper.writerWithDefaultPrettyPrinter()
-                .writeValue(new File("data", fileName), teams);
-    }
-
-    public static void writeTeamToFile(String fileName, Team team) throws IOException {
-        mapper.writerWithDefaultPrettyPrinter()
-                .writeValue(new File("data", fileName), team);
-    }*/
-
-}
