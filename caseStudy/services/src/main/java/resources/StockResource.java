@@ -27,11 +27,7 @@ import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 @Path("services")
 public class StockResource {
@@ -50,18 +46,22 @@ public class StockResource {
 
         Map<Date, Double> stocksRangeMap = new TreeMap<Date, Double>();
 
-        for (Stock stock: stocks) {
+        Optional<Stock> stockOptional = stocks.stream().filter(stock -> stock.getName().equals(stockTicker)).findFirst();
 
-            for (Map<String, Double> map: stock.getDailyClosePrice() ) {
+        if (!stockOptional.isPresent()) {
+            return Arrays.asList();
+        }
 
-                for (String keyStr : map.keySet()) {
+        Stock stock = stockOptional.get();
 
-                    Date key = DATEFORMAT.parse(keyStr);
+        for (Map<String, Double> map: stock.getDailyClosePrice() ) {
 
-                    if (((key.before(endDate)) || (key.equals(endDate))) && ((key.after(startDate)) || (key.equals(startDate)))) {
-                        stocksRangeMap.put(key, map.get(keyStr));
-                    }
+            for (String keyStr : map.keySet()) {
 
+                Date key = DATEFORMAT.parse(keyStr);
+
+                if (((key.before(endDate)) || (key.equals(endDate))) && ((key.after(startDate)) || (key.equals(startDate)))) {
+                    stocksRangeMap.put(key, map.get(keyStr));
                 }
 
             }
