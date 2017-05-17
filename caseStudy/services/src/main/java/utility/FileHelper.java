@@ -20,7 +20,8 @@ public class FileHelper {
     public static Company readSingleStock(String fileName) throws IOException {
 
         InputStream inputStream = new FileInputStream(("data" + File.separatorChar + fileName));
-        return mapper.readValue(inputStream, new TypeReference<Stock>() {});
+        return mapper.readValue(inputStream, new TypeReference<Stock>() {
+        });
     }
 
     public static Stock readAllStocks(String fileName) throws IOException {
@@ -34,7 +35,8 @@ public class FileHelper {
 
         InputStream inputStream = new FileInputStream(("data" + File.separatorChar + fileName));
 //        InputStream resourceAsStream = FileHelper.class.getClassLoader().getResourceAsStream(fileName);
-        return mapper.readValue(inputStream, new TypeReference<Company>() {});
+        return mapper.readValue(inputStream, new TypeReference<Company>() {
+        });
     }
 
     public static List<Company> readAllCompanies(String fileName) throws IOException {
@@ -44,4 +46,5 @@ public class FileHelper {
         return mapper.readValue(inputStream, new TypeReference<List<Company>>() {
         });
     }
+}
 
