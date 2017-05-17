@@ -21,6 +21,7 @@ import pojo.*;
 import javax.ws.rs.core.Application;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
 
 import java.util.*;
 import static org.junit.Assert.assertEquals;
@@ -29,7 +30,7 @@ import static org.junit.Assert.assertEquals;
  * Write your tests for the Stock Resource here
  */
 
-public class StockResourceTest {
+public class StockResourceTest extends JerseyTest {
 
     private static ObjectMapper mapper = new ObjectMapper();
 
