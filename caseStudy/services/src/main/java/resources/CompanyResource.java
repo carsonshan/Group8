@@ -15,11 +15,46 @@
  */
 
 package resources;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.List;
 
-// TODO - add your @Path here
+
+import utility.FileHelper;
+import utility.InputValidator;
+import pojo.Company;
+
+import jdk.nashorn.internal.objects.annotations.Getter;
+
+@Path("services")
 public class CompanyResource {
 
     // TODO - Add a @GET resource to get company data
     // Your service should return data for a given stock ticker
+
+    @GET
+    @Path("/company/{companyId}")
+    public Response showCompany(@PathParam("companyId") String companyId)throws IOException{
+        List<Company> companies = FileHelper.readAllCompanies("compayInfo.json");
+        Company retCompany = new Company();
+
+        for (Company company : companies) {
+            if (company.getSymbol().equalsIgnoreCase(companyId)){
+                retCompany = company;
+            }
+        }
+        Response.ResponseBuilder response;
+        return Response.status(Response.Status.OK).entity(retCompany).build();
+    }
+
+
 
 }

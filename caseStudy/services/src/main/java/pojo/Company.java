@@ -36,11 +36,13 @@ public class Company {
     @JsonProperty
     private String headquatersStateOrCountry;
     @JsonProperty
-    private String numberOfEmployees;
+    private int numberOfEmployees;
     @JsonProperty
     private String sector;
     @JsonProperty
     private String industry;
+
+
 
 
     // TODO - add getter and setter methods for your attributes
@@ -73,15 +75,26 @@ public class Company {
         this.headquatersStateOrCountry = headquatersStateOrCountry;
     }
 
-    public String getNumberOfEmployees(){
+    public int getNumberOfEmployees(){
         return numberOfEmployees;
     }
-    public void setNumberOfEmployees()
+    public void setNumberOfEmployees(int numberOfEmployees){
+        this.numberOfEmployees = numberOfEmployees;
+    }
+
     public String getSector(){
         return sector;
     }
+    public void setSector(String sector){
+        this.sector = sector;
+    }
+
     public  String getIndustry(){
         return industry;
     }
+    public void setIndustry(){
+        this.industry = industry;
+    }
+
 
 }
