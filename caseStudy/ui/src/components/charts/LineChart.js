@@ -23,17 +23,25 @@ class LineChart extends React.Component {
     }
 
     componentDidMount() {
-/*        Highcharts.chart('chart', {
-
-            TODO
-            Create a highcharts line chart of your choosing (e.g. https://www.highcharts.com/demo/line-time-series for a demo).
-
+        Highcharts.chart('container', {
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: 'Sample Company'
+            },
+            subtitle: {
+                text: 'Industry: Technology'
+            },
+            xAxis: {
+                type: dateTime
+            },
             series: [{
                 name: 'Prices',
                 data: this.props.data
             }]
         });
-*/
+
     }
 
     componentWillReceiveProps(props) {
@@ -49,8 +57,9 @@ class LineChart extends React.Component {
         /**
          * TODO
          * Uncomment the line below to pass the data be displayed to the series
-         * this.chart.series[0].setData(data);
          */
+        this.chart.series[0].setData(data);
+
     }
 
     componentWillUnmount() {
@@ -66,3 +75,4 @@ class LineChart extends React.Component {
 }
 
 // Don't forget to export your component!
+export default LineChart;
