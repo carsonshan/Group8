@@ -57,7 +57,13 @@ class StockTicker extends React.Component {
              * and render it.
              */
 
-            this.setState()
+            fetch('http://localhost:8000/services/companies/', {
+                method: 'get'
+            }).then(function (response) {
+                const companysymbols = response.json();
+                this.setState({options: companysymbols});
+            });
+
             var symbol = event[0].symbol;
             console.log(symbol);
 
