@@ -39,7 +39,7 @@
  * https://www.npmjs.com/package/react-select
  * http://jedwatson.github.io/react-select/
  * https://github.com/JedWatson/react-select
- * 
+ *
  * react-boostrap-typeahead
  * https://www.npmjs.com/package/react-bootstrap-typeahead
  * http://ericgio.github.io/react-bootstrap-typeahead/
@@ -47,10 +47,10 @@
  */
 
 import React from 'react';
-//import {Typeahead} from 'react-bootstrap-typeahead'; UNCOMMENT this line if you are using the react-bootstrap-typeeahead component
+import {Typeahead} from 'react-bootstrap-typeahead';
 
-/* If you chose to use react-boostrap-typeahead, look at AsyncTypeahead for a component that 
- * provides auto-complete suggestions as you type. This would require adding a search handler 
+/* If you chose to use react-boostrap-typeahead, look at AsyncTypeahead for a component that
+ * provides auto-complete suggestions as you type. This would require adding a search handler
  * method for an onSearch prop.
  * https://github.com/ericgio/react-bootstrap-typeahead/blob/master/example/examples/AsyncExample.react.js
  */
@@ -103,8 +103,18 @@ class StockTicker extends React.Component {
              * to handle errors). If you successfully retrieve this information, you can set the state objects
              * and render it.
              */
-            var symbol = null;
-            this.setState({showinfo: true});
+            var symbol = event[0];
+            console.log(symbol);
+
+            fetch('http://localhost:8000/services/company/' + symbol){
+                method: 'get'
+            }).then(function(response) {
+                const companyValues = response.json();
+                console.log(companyValues);
+                this.setState({showcompanyinfo: true, company: companyValues});
+            }).catch(function(err) {
+
+            });
 
             //this.props.onChange(..);  Call this.props.onChange with the selected symbol to propagate it
             // to the App component, which will handle it via its own onChane prop,
